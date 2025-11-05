@@ -5,21 +5,21 @@ import '../../constant/color.dart';
 import '../../view_model/controller/darktheme_controller.dart';
 
 class CartWeb extends ConsumerWidget {
-  CartWeb({super.key, });
+  CartWeb({super.key});
 
   final List<Map<String, dynamic>> CartItem = [
     {
       "name": "Apple Iphone 14 Pro",
-      "image": "https://s3ng.cashify.in/cashify/product/img/xhdpi/csh-yktr66ov-8tbh.png",
-      "price": "45000"
-
+      "image":
+          "https://s3ng.cashify.in/cashify/product/img/xhdpi/csh-yktr66ov-8tbh.png",
+      "price": "45000",
     },
     {
       "name": "Samsung Galaxy S23 Ultra",
-      "image": "https://s3ng.cashify.in/cashify/product/img/xhdpi/csh-yktr66ov-8tbh.png",
-      "price": "55000"
+      "image":
+          "https://s3ng.cashify.in/cashify/product/img/xhdpi/csh-yktr66ov-8tbh.png",
+      "price": "55000",
     },
-
   ];
 
   @override
@@ -39,7 +39,8 @@ class CartWeb extends ConsumerWidget {
     double summaryVerticalSpacing; // New responsive spacing
     double checkoutButtonVerticalPadding;
 
-    if (width < 600) { // Mobile-like on web (narrow window)
+    if (width < 600) {
+      // Mobile-like on web (narrow window)
       cartItemHeight = 100;
       imageSize = 80;
       titleFontSize = 14;
@@ -50,7 +51,8 @@ class CartWeb extends ConsumerWidget {
       itemInnerPadding = 4.0;
       summaryVerticalSpacing = 10.0; // Smaller spacing
       checkoutButtonVerticalPadding = 8.0;
-    } else if (width < 1024) { // Tablet-like on web
+    } else if (width < 1024) {
+      // Tablet-like on web
       cartItemHeight = 120;
       imageSize = 100;
       titleFontSize = 16;
@@ -61,7 +63,8 @@ class CartWeb extends ConsumerWidget {
       itemInnerPadding = 6.0;
       summaryVerticalSpacing = 15.0; // Medium spacing
       checkoutButtonVerticalPadding = 10.0;
-    } else { // Desktop-like on web
+    } else {
+      // Desktop-like on web
       cartItemHeight = 150;
       imageSize = 120;
       titleFontSize = 18;
@@ -75,14 +78,20 @@ class CartWeb extends ConsumerWidget {
     }
 
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.background, // Theme-aware background
+      backgroundColor: Theme.of(
+        context,
+      ).colorScheme.background, // Theme-aware background
       appBar: AppBar(
-        backgroundColor: Theme.of(context).appBarTheme.backgroundColor, // Theme-aware background
+        backgroundColor: Theme.of(
+          context,
+        ).appBarTheme.backgroundColor, // Theme-aware background
         automaticallyImplyLeading: true,
         title: Text(
           'Cart',
           style: TextStyle(
-            color: Theme.of(context).textTheme.titleLarge?.color, // Theme-aware text color
+            color: Theme.of(
+              context,
+            ).textTheme.titleLarge?.color, // Theme-aware text color
             fontSize: titleFontSize,
             fontWeight: FontWeight.bold,
           ),
@@ -102,16 +111,22 @@ class CartWeb extends ConsumerWidget {
                       width: double.infinity,
                       height: cartItemHeight,
                       decoration: BoxDecoration(
-                        color: Theme.of(context).cardColor, // Theme-aware background color
+                        color: Theme.of(
+                          context,
+                        ).cardColor, // Theme-aware background color
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Card(
-                        color: Theme.of(context).cardColor, // Theme-aware background color
+                        color: Theme.of(
+                          context,
+                        ).cardColor, // Theme-aware background color
                         clipBehavior: Clip.antiAlias,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                           side: BorderSide(
-                            color: Theme.of(context).dividerColor, // Theme-aware divider color
+                            color: Theme.of(
+                              context,
+                            ).dividerColor, // Theme-aware divider color
                           ),
                         ),
                         child: Row(
@@ -122,10 +137,12 @@ class CartWeb extends ConsumerWidget {
                                 CartItem[index]["image"], // Use actual image from list
                                 width: imageSize,
                                 height: imageSize,
-                                fit: BoxFit.contain, // Ensure full image is visible
+                                fit: BoxFit
+                                    .contain, // Ensure full image is visible
                               ),
                             ),
-                            Expanded( // Allow text column to take available space
+                            Expanded(
+                              // Allow text column to take available space
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Column(
@@ -139,7 +156,10 @@ class CartWeb extends ConsumerWidget {
                                       style: TextStyle(
                                         fontSize: titleFontSize,
                                         fontWeight: FontWeight.bold,
-                                        color: Theme.of(context).textTheme.bodyLarge?.color, // Theme-aware text color
+                                        color: Theme.of(context)
+                                            .textTheme
+                                            .bodyLarge
+                                            ?.color, // Theme-aware text color
                                       ),
                                     ),
                                     Text(
@@ -147,27 +167,48 @@ class CartWeb extends ConsumerWidget {
                                       style: TextStyle(
                                         fontSize: priceFontSize,
                                         fontWeight: FontWeight.bold,
-                                        color: Theme.of(context).textTheme.bodyMedium?.color, // Theme-aware text color
+                                        color: Theme.of(context)
+                                            .textTheme
+                                            .bodyMedium
+                                            ?.color, // Theme-aware text color
                                       ),
                                     ),
                                     Spacer(), // Pushes quantity row to bottom
                                     Row(
-                                      mainAxisAlignment: MainAxisAlignment.end, // Align quantity controls to the end
+                                      mainAxisAlignment: MainAxisAlignment
+                                          .end, // Align quantity controls to the end
                                       children: [
                                         IconButton(
                                           onPressed: () {},
-                                          icon: Icon(Icons.remove, size: iconButtonSize, color: Theme.of(context).iconTheme.color,),
+                                          icon: Icon(
+                                            Icons.remove,
+                                            size: iconButtonSize,
+                                            color: Theme.of(
+                                              context,
+                                            ).iconTheme.color,
+                                          ),
                                         ),
                                         Text(
                                           "1",
-                                          style: TextStyle(fontSize: priceFontSize, color: Theme.of(context).textTheme.bodyMedium?.color),
+                                          style: TextStyle(
+                                            fontSize: priceFontSize,
+                                            color: Theme.of(
+                                              context,
+                                            ).textTheme.bodyMedium?.color,
+                                          ),
                                         ),
                                         IconButton(
                                           onPressed: () {},
-                                          icon: Icon(Icons.add, size: iconButtonSize, color: Theme.of(context).iconTheme.color,),
+                                          icon: Icon(
+                                            Icons.add,
+                                            size: iconButtonSize,
+                                            color: Theme.of(
+                                              context,
+                                            ).iconTheme.color,
+                                          ),
                                         ),
                                       ],
-                                    )
+                                    ),
                                   ],
                                 ),
                               ),
@@ -182,20 +223,26 @@ class CartWeb extends ConsumerWidget {
             ),
             SizedBox(height: 20),
             OrderSummary(
-                titleFontSize: titleFontSize,
-                priceFontSize: priceFontSize,
-                buttonFontSize: buttonFontSize,
-                horizontalPadding: horizontalPadding,
-                summaryVerticalSpacing: summaryVerticalSpacing,
-                checkoutButtonVerticalPadding: checkoutButtonVerticalPadding,
-                cartItems: CartItem
-            )
+              titleFontSize: titleFontSize,
+              priceFontSize: priceFontSize,
+              buttonFontSize: buttonFontSize,
+              horizontalPadding: horizontalPadding,
+              summaryVerticalSpacing: summaryVerticalSpacing,
+              checkoutButtonVerticalPadding: checkoutButtonVerticalPadding,
+              cartItems: CartItem,
+            ),
           ],
         ),
       ),
     );
   }
-  Widget OrderSummery(BuildContext context, double fontSize, double buttonFontSize, double conButtonSize,){
+
+  Widget OrderSummery(
+    BuildContext context,
+    double fontSize,
+    double buttonFontSize,
+    double conButtonSize,
+  ) {
     int total = CartItem.fold(0, (sum, item) => sum + int.parse(item["price"]));
     return Container(
       width: double.infinity,
@@ -206,27 +253,58 @@ class CartWeb extends ConsumerWidget {
         border: Border.all(
           color: Theme.of(context).dividerColor, // Theme-aware divider color
         ),
-
       ),
       child: Column(
         children: [
-          ...CartItem.map((item) => Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 4),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(item["name"], style: TextStyle(fontSize: fontSize, fontWeight: FontWeight.bold, color: Theme.of(context).textTheme.bodyLarge?.color)),
-                Text(item["price"], style: TextStyle(fontSize: fontSize, fontWeight: FontWeight.bold, color: Theme.of(context).textTheme.bodyLarge?.color)),
-              ],
+          ...CartItem.map(
+            (item) => Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 16.0,
+                vertical: 4,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    item["name"],
+                    style: TextStyle(
+                      fontSize: fontSize,
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).textTheme.bodyLarge?.color,
+                    ),
+                  ),
+                  Text(
+                    item["price"],
+                    style: TextStyle(
+                      fontSize: fontSize,
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).textTheme.bodyLarge?.color,
+                    ),
+                  ),
+                ],
+              ),
             ),
-          )),
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('Total', style: TextStyle(fontSize: fontSize, fontWeight: FontWeight.bold, color: Theme.of(context).textTheme.bodyLarge?.color),),
-              Text('$total', style: TextStyle(fontSize: fontSize, fontWeight: FontWeight.bold, color: Theme.of(context).textTheme.bodyLarge?.color),)
-
-            ]
+              Text(
+                'Total',
+                style: TextStyle(
+                  fontSize: fontSize,
+                  fontWeight: FontWeight.bold,
+                  color: Theme.of(context).textTheme.bodyLarge?.color,
+                ),
+              ),
+              Text(
+                '$total',
+                style: TextStyle(
+                  fontSize: fontSize,
+                  fontWeight: FontWeight.bold,
+                  color: Theme.of(context).textTheme.bodyLarge?.color,
+                ),
+              ),
+            ],
           ),
 
           Padding(
@@ -234,31 +312,35 @@ class CartWeb extends ConsumerWidget {
             child: ElevatedButton(
               onPressed: () {},
               style: ElevatedButton.styleFrom(
-                backgroundColor: Theme.of(context).colorScheme.primary, // Theme-aware background
+                backgroundColor: Theme.of(
+                  context,
+                ).colorScheme.primary, // Theme-aware background
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
-                padding: EdgeInsets.symmetric(vertical: 15), // Add vertical padding for better button height
+                padding: EdgeInsets.symmetric(
+                  vertical: 15,
+                ), // Add vertical padding for better button height
               ),
               child: Text(
                 "Proceed to Checkout",
                 style: TextStyle(
                   fontSize: buttonFontSize,
                   fontWeight: FontWeight.bold,
-                  color: Theme.of(context).colorScheme.onPrimary, // Theme-aware text color
+                  color: Theme.of(
+                    context,
+                  ).colorScheme.onPrimary, // Theme-aware text color
                 ),
               ),
             ),
           ),
         ],
       ),
-
     );
   }
 }
 
 class OrderSummary extends ConsumerWidget {
-
   final double titleFontSize;
   final double priceFontSize;
   final double buttonFontSize;
@@ -282,9 +364,9 @@ class OrderSummary extends ConsumerWidget {
     return Container(
       padding: EdgeInsets.all(horizontalPadding),
       decoration: BoxDecoration(
-          color: Theme.of(context).cardColor,
-          borderRadius: BorderRadius.circular(10),
-          border: Border.all(color: Theme.of(context).dividerColor,)
+        color: Theme.of(context).cardColor,
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(color: Theme.of(context).dividerColor),
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -303,11 +385,18 @@ class OrderSummary extends ConsumerWidget {
             children: [
               Text(
                 "Subtotal",
-                style: TextStyle(fontSize: priceFontSize, color: Theme.of(context).textTheme.bodyMedium?.color),
+                style: TextStyle(
+                  fontSize: priceFontSize,
+                  color: Theme.of(context).textTheme.bodyMedium?.color,
+                ),
               ),
               Text(
                 "\$total", // Use calculated total for subtotal for now
-                style: TextStyle(fontSize: priceFontSize, fontWeight: FontWeight.bold, color: Theme.of(context).textTheme.bodyLarge?.color),
+                style: TextStyle(
+                  fontSize: priceFontSize,
+                  fontWeight: FontWeight.bold,
+                  color: Theme.of(context).textTheme.bodyLarge?.color,
+                ),
               ),
             ],
           ),
@@ -317,11 +406,18 @@ class OrderSummary extends ConsumerWidget {
             children: [
               Text(
                 "Shipping",
-                style: TextStyle(fontSize: priceFontSize, color: Theme.of(context).textTheme.bodyMedium?.color),
+                style: TextStyle(
+                  fontSize: priceFontSize,
+                  color: Theme.of(context).textTheme.bodyMedium?.color,
+                ),
               ),
               Text(
                 "Free",
-                style: TextStyle(fontSize: priceFontSize, fontWeight: FontWeight.bold, color: Theme.of(context).textTheme.bodyLarge?.color),
+                style: TextStyle(
+                  fontSize: priceFontSize,
+                  fontWeight: FontWeight.bold,
+                  color: Theme.of(context).textTheme.bodyLarge?.color,
+                ),
               ),
             ],
           ),
@@ -331,11 +427,19 @@ class OrderSummary extends ConsumerWidget {
             children: [
               Text(
                 "Total",
-                style: TextStyle(fontSize: titleFontSize, fontWeight: FontWeight.bold, color: Theme.of(context).textTheme.bodyLarge?.color),
+                style: TextStyle(
+                  fontSize: titleFontSize,
+                  fontWeight: FontWeight.bold,
+                  color: Theme.of(context).textTheme.bodyLarge?.color,
+                ),
               ),
               Text(
                 "\$total", // Use calculated total
-                style: TextStyle(fontSize: titleFontSize, fontWeight: FontWeight.bold, color: Theme.of(context).textTheme.bodyLarge?.color),
+                style: TextStyle(
+                  fontSize: titleFontSize,
+                  fontWeight: FontWeight.bold,
+                  color: Theme.of(context).textTheme.bodyLarge?.color,
+                ),
               ),
             ],
           ),
@@ -349,7 +453,9 @@ class OrderSummary extends ConsumerWidget {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
-                padding: EdgeInsets.symmetric(vertical: checkoutButtonVerticalPadding),
+                padding: EdgeInsets.symmetric(
+                  vertical: checkoutButtonVerticalPadding,
+                ),
               ),
               child: Text(
                 "Proceed to Checkout",
@@ -366,9 +472,3 @@ class OrderSummary extends ConsumerWidget {
     );
   }
 }
-
-
-
-
-
-

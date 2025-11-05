@@ -1,17 +1,16 @@
-
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class AuthProvider extends Notifier<bool> {
   @override
   bool build() => false;
 
-  void login(){
+  void login() {
     state = true;
   }
 
-  void logout(){
+  void logout() {
     state = false;
   }
-
 }
+
 final authProvider = NotifierProvider<AuthProvider, bool>(() => AuthProvider());

@@ -72,10 +72,17 @@ class BottomNavbar extends ConsumerWidget {
             items: const [
               BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.phone_android), label: 'Refurbished'),
+                icon: Icon(Icons.phone_android),
+                label: 'Refurbished',
+              ),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.headphones), label: 'Accessories'),
-              BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+                icon: Icon(Icons.headphones),
+                label: 'Accessories',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.person),
+                label: 'Profile',
+              ),
             ],
           ),
         ),

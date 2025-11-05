@@ -9,6 +9,7 @@ import 'package:phonecare/widgets/brand_details.dart';
 import 'package:phonecare/widgets/order_screen.dart';
 import 'package:phonecare/widgets/search_screen.dart';
 
+import '../constant/enums.dart';
 import '../models/accessories_model.dart';
 import '../view/auth/verifyOtp_screen.dart';
 import '../view/home/home_screen.dart';
@@ -77,9 +78,15 @@ final GoRouter router = GoRouter(
       builder: (context, state) {
         final data = state.extra;
         if (data is AccessoriesModel) {
-          return ProductDetails(product: data);
+          return ProductDetails(
+            productType: Products.accessary,
+            accessoriesList: data,
+          );
         } else if (data is RefurbishedModel) {
-          return ProductDetails(product: data);
+          return ProductDetails(
+            productType: Products.refurbrished,
+            refurbishedList: data,
+          );
         } else {
           return const Scaffold(
             body: Center(child: Text("Invalid product type")),

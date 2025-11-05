@@ -69,7 +69,10 @@ class _AccessoriesMobileState extends ConsumerState<AccessoriesMobile> {
         ),
         itemBuilder: (context, index) {
           final item = productList[index];
-          return CustomProductCard(productList: item);
+          return CustomProductCard(
+            productType: Products.accessary,
+            accessoryList: item,
+          );
         },
       ),
     );

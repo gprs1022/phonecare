@@ -22,6 +22,7 @@ class _CrausalSliderState extends ConsumerState<CrausalSlider> {
       ref.read(homeNotifierProvider.notifier).getSlider();
     });
   }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -48,17 +49,17 @@ class _CrausalSliderState extends ConsumerState<CrausalSlider> {
     final homeNotifier = ref.watch(homeNotifierProvider.notifier);
     final apiStaus = ref.watch(homeNotifierProvider);
 
-    final List<String> images = homeNotifier.sliders.map((e) => '${ApiConfig.baseUrl}/${e.image}').toList();
+    final List<String> images = homeNotifier.sliders
+        .map((e) => '${ApiConfig.baseUrl}/${e.image}')
+        .toList();
 
-     if(apiStaus == ApiStatus.loading) {
-       return const Center(child: CircularProgressIndicator());
-     } else if(apiStaus == ApiStatus.error) {
-       return const Center(child: Text("Something went wrong"));
-     } else if(images.isEmpty) {
-       return const Center(child: Text("yaha koi photo nhai hai"));
-     }
-
-
+    if (apiStaus == ApiStatus.loading) {
+      return const Center(child: CircularProgressIndicator());
+    } else if (apiStaus == ApiStatus.error) {
+      return const Center(child: Text("Something went wrong"));
+    } else if (images.isEmpty) {
+      return const Center(child: Text("yaha koi photo nhai hai"));
+    }
 
     return Padding(
       padding: const EdgeInsets.all(10.0),
@@ -95,7 +96,7 @@ class _CrausalSliderState extends ConsumerState<CrausalSlider> {
                           child: CircularProgressIndicator(
                             value: progress.expectedTotalBytes != null
                                 ? progress.cumulativeBytesLoaded /
-                                (progress.expectedTotalBytes ?? 1)
+                                      (progress.expectedTotalBytes ?? 1)
                                 : null,
                             color: Theme.of(context).colorScheme.secondary,
                           ),
@@ -124,5 +125,3 @@ class _CrausalSliderState extends ConsumerState<CrausalSlider> {
     );
   }
 }
-
-

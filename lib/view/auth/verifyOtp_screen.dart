@@ -9,7 +9,7 @@ class VerifyOtpScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if(PlatformHelper.isWeb || PlatformHelper.isDesktop){
+    if (PlatformHelper.isWeb || PlatformHelper.isDesktop) {
       print("web is running 🏃‍♀️");
       return VerifyOtpWeb();
     } else {

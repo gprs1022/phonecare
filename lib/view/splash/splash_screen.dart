@@ -52,7 +52,6 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
 
   @override
   Widget build(BuildContext context) {
-
     ref.listen(loginTypeProvider, (previous, next) {
       if (next == AuthState.loggedIn) {
         context.goNamed('bottomNav');

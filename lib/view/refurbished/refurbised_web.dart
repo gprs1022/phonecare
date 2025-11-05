@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:phonecare/models/accessories_model.dart';
 import 'package:phonecare/view_model/controller/refurbished_provider.dart';
+import 'package:phonecare/widgets/custom_productcard.dart';
 
 import '../../constant/enums.dart';
-import '../../widgets/custom_productcard.dart';
 
 class RefurbisedWeb extends ConsumerStatefulWidget {
   const RefurbisedWeb({super.key});
@@ -77,26 +76,10 @@ class _RefurbisedWebState extends ConsumerState<RefurbisedWeb> {
         ),
         itemBuilder: (context, index) {
           final refurbishedProduct = productList[index];
-          final accessoriesModel = AccessoriesModel(
-            id: refurbishedProduct.id,
-            productName: refurbishedProduct.productName,
-            price: refurbishedProduct.price,
-            images: refurbishedProduct.images,
-            productDescription: refurbishedProduct.productDescription,
-            rating: refurbishedProduct.rating,
-            condition: refurbishedProduct.condition,
-            brand: Brand(
-              id: refurbishedProduct.brand?.id ?? '',
-              name: refurbishedProduct.brand?.name ?? '',
-            ),
-            categoryId: '',
-            storage: 0,
-            battery: '',
-            processor: '',
-            ram: 0,
-            originalPrice: 0,
+          return CustomProductCard(
+            productType: Products.refurbrished,
+            refurbishedList: refurbishedProduct,
           );
-          return CustomProductCard(productList: accessoriesModel);
         },
       ),
     );

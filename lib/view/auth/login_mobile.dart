@@ -9,7 +9,6 @@ class LoginMobile extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-
     ref.listen(loginTypeProvider, (previous, next) {
       if (next == AuthState.otpSent) {
         context.goNamed('verifyOtp');
@@ -18,16 +17,16 @@ class LoginMobile extends ConsumerWidget {
       } else if (next == AuthState.error) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text(ref.read(loginTypeProvider.notifier).errorMessage ?? 'An error occurred'),
+            content: Text(
+              ref.read(loginTypeProvider.notifier).errorMessage ??
+                  'An error occurred',
+            ),
           ),
         );
       }
     });
 
-    final width = MediaQuery
-        .of(context)
-        .size
-        .width;
+    final width = MediaQuery.of(context).size.width;
 
     double imageHeight;
     double imageWidth;
@@ -61,75 +60,88 @@ class LoginMobile extends ConsumerWidget {
         child: Form(
           autovalidateMode: AutovalidateMode.onUserInteraction,
           child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(height: sizedBoxHeight,),
-                ClipOval(
-                  child: Image.asset(
-                    'assets/images/logo.png',
-                    fit: BoxFit.cover,
-                    width: imageWidth,
-                    height: imageHeight,
-                  ),
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(height: sizedBoxHeight),
+              ClipOval(
+                child: Image.asset(
+                  'assets/images/logo.png',
+                  fit: BoxFit.cover,
+                  width: imageWidth,
+                  height: imageHeight,
                 ),
-                SizedBox(height: sizedBoxHeight,),
-                Text('Welcome to Phone Care', style: TextStyle(
-                    fontSize: fontSize, fontWeight: FontWeight.bold),),
-                SizedBox(height: sizedBoxHeight,),
-                TextFormField(
-                  controller: ref
-                      .watch(loginTypeProvider.notifier)
-                      .emailController,
-                  style: TextStyle(
-                    fontSize: fontSize,
-                    fontWeight: FontWeight.w500,
-                  ),
-                  keyboardType: TextInputType.text,
-                  decoration: InputDecoration(
-                      hintText: 'Email',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      suffixIcon: Icon(Icons.email)
-                  ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter your email';
-                    }
-                    final emailRegex = RegExp(
-                        r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
-                    if (!emailRegex.hasMatch(value)) {
-                      return 'Please enter a valid email address';
-                    }
-                    return null;
-                  },
+              ),
+              SizedBox(height: sizedBoxHeight),
+              Text(
+                'Welcome to Phone Care',
+                style: TextStyle(
+                  fontSize: fontSize,
+                  fontWeight: FontWeight.bold,
                 ),
-                SizedBox(height: sizedBoxHeight,),
-                SizedBox(
-                  width: double.infinity,
-                  height: buttonHeight,
-                  child: ElevatedButton(
-                    onPressed: () {
-                       ref.read(loginTypeProvider.notifier).login();
-
-                      },
-                    child: Text('Login', style: TextStyle(color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: fontSize),),
-                  ),
+              ),
+              SizedBox(height: sizedBoxHeight),
+              TextFormField(
+                controller: ref
+                    .watch(loginTypeProvider.notifier)
+                    .emailController,
+                style: TextStyle(
+                  fontSize: fontSize,
+                  fontWeight: FontWeight.w500,
                 ),
-                SizedBox(height: sizedBoxHeight,),
-                TextButton(
+                keyboardType: TextInputType.text,
+                decoration: InputDecoration(
+                  hintText: 'Email',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  suffixIcon: Icon(Icons.email),
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your email';
+                  }
+                  final emailRegex = RegExp(
+                    r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
+                  );
+                  if (!emailRegex.hasMatch(value)) {
+                    return 'Please enter a valid email address';
+                  }
+                  return null;
+                },
+              ),
+              SizedBox(height: sizedBoxHeight),
+              SizedBox(
+                width: double.infinity,
+                height: buttonHeight,
+                child: ElevatedButton(
                   onPressed: () {
-                    context.goNamed('terms-conditions');
+                    ref.read(loginTypeProvider.notifier).login();
                   },
-                  child: Text('Terms & Conditions', style: TextStyle(
-                      color: Colors.black,
+                  child: Text(
+                    'Login',
+                    style: TextStyle(
+                      color: Colors.white,
                       fontWeight: FontWeight.bold,
-                      fontSize: fontSize),),
-                )
-
-              ]
+                      fontSize: fontSize,
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: sizedBoxHeight),
+              TextButton(
+                onPressed: () {
+                  context.goNamed('terms-conditions');
+                },
+                child: Text(
+                  'Terms & Conditions',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: fontSize,
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
       ),

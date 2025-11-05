@@ -6,7 +6,6 @@ import 'package:phonecare/view_model/controller/home_provider.dart';
 import 'package:phonecare/view_model/service/api_config.dart';
 import '../constant/color.dart';
 
-
 class BrandDetails extends ConsumerWidget {
   final String brandName;
 
@@ -75,10 +74,7 @@ class BrandDetails extends ConsumerWidget {
               onTap: () {
                 context.pushNamed(
                   "productService",
-                  extra: {
-                    'name': brand.modelName,
-                    'image': brand.modelImage,
-                  },
+                  extra: {'name': brand.modelName, 'image': brand.modelImage},
                 );
               },
               child: Card(

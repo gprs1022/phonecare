@@ -14,7 +14,6 @@ class BrandItems extends ConsumerStatefulWidget {
 }
 
 class _BrandItemsState extends ConsumerState<BrandItems> {
-
   @override
   void initState() {
     super.initState();
@@ -22,7 +21,6 @@ class _BrandItemsState extends ConsumerState<BrandItems> {
       ref.read(homeNotifierProvider.notifier).getBrands();
     });
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -32,40 +30,41 @@ class _BrandItemsState extends ConsumerState<BrandItems> {
     final apiStatus = ref.watch(homeNotifierProvider);
     final brands = homeNotifier.brands;
 
-
-
     // Get screen width
 
-    final width = MediaQuery
-        .of(context)
-        .size
-        .width;
+    final width = MediaQuery.of(context).size.width;
 
     int crossAxisCount;
     double imageSize;
     double fontSize;
 
-    if (width < 600) { // XS: Small mobile
+    if (width < 600) {
+      // XS: Small mobile
       crossAxisCount = 2;
       imageSize = 70; // Smaller image for small screens
       fontSize = 12;
-    } else if (width < 768) { // SM: Large mobile / small tablet
+    } else if (width < 768) {
+      // SM: Large mobile / small tablet
       crossAxisCount = 3;
       imageSize = 80;
       fontSize = 14;
-    } else if (width < 992) { // MD: Tablet portrait / small laptop
+    } else if (width < 992) {
+      // MD: Tablet portrait / small laptop
       crossAxisCount = 4;
       imageSize = 90;
       fontSize = 16;
-    } else if (width < 1200) { // LG: Tablet landscape / medium laptop
+    } else if (width < 1200) {
+      // LG: Tablet landscape / medium laptop
       crossAxisCount = 5;
       imageSize = 100;
       fontSize = 16;
-    } else if (width < 1600) { // XL: Large laptop / desktop
+    } else if (width < 1600) {
+      // XL: Large laptop / desktop
       crossAxisCount = 6;
       imageSize = 110;
       fontSize = 18;
-    } else { // XXL: Large desktop / monitor
+    } else {
+      // XXL: Large desktop / monitor
       crossAxisCount = 7;
       imageSize = 120;
       fontSize = 18;
@@ -79,13 +78,10 @@ class _BrandItemsState extends ConsumerState<BrandItems> {
       return const Center(child: Text("No brands available"));
     }
 
-
     return Padding(
       padding: const EdgeInsets.all(10.0),
       child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20.0),
-        ),
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(20.0)),
         child: GridView.builder(
           physics: const NeverScrollableScrollPhysics(),
           shrinkWrap: true,
@@ -101,34 +97,30 @@ class _BrandItemsState extends ConsumerState<BrandItems> {
             final brand = brands[index];
             return GestureDetector(
               onTap: () {
-                ref.read(homeNotifierProvider.notifier).getPhoneByBrandId(brand.id);
-                context.pushNamed(
-                  "branddetails",
-                  extra: {
-                    'name': brand.name,
-                  },
-                );
+                ref
+                    .read(homeNotifierProvider.notifier)
+                    .getPhoneByBrandId(brand.id);
+                context.pushNamed("branddetails", extra: {'name': brand.name});
               },
               child: Card(
                 elevation: 6,
-                color: Theme
-                    .of(context)
-                    .cardColor, // Using theme card color
+                color: Theme.of(context).cardColor, // Using theme card color
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20.0),
                 ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SizedBox( // Use SizedBox for controlled image size
+                    SizedBox(
+                      // Use SizedBox for controlled image size
                       width: imageSize,
                       height: imageSize,
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(20.0),
                         child: Image.network(
                           brand.logo.startsWith('http')
-                          ? brand.logo
-                          : "${ApiConfig.baseUrl}/${brand.logo}",
+                              ? brand.logo
+                              : "${ApiConfig.baseUrl}/${brand.logo}",
                           fit: BoxFit.contain, // Ensure full logo is visible
                         ),
                       ),
@@ -139,11 +131,9 @@ class _BrandItemsState extends ConsumerState<BrandItems> {
                       style: TextStyle(
                         fontSize: fontSize,
                         fontWeight: FontWeight.bold,
-                        color: Theme
-                            .of(context)
-                            .textTheme
-                            .bodyMedium
-                            ?.color, // Using theme text color
+                        color: Theme.of(
+                          context,
+                        ).textTheme.bodyMedium?.color, // Using theme text color
                       ),
                     ),
                   ],

@@ -5,11 +5,12 @@ import '../../view/profile/profile_screen.dart';
 import '../../view/refurbished/refurbished_screen.dart';
 import '../../view/accessories/accessories_screen.dart';
 
-class bottomNavNotifier extends Notifier<int>{
+class bottomNavNotifier extends Notifier<int> {
   @override
   build() {
     return 0;
   }
+
   List screen = [
     HomeScreen(),
     RefurbishedScreen(),
@@ -22,8 +23,8 @@ class bottomNavNotifier extends Notifier<int>{
     selectedIndex = index;
     state = selectedIndex;
   }
-
 }
+
 final bottomNavProvider = NotifierProvider<bottomNavNotifier, int>(
   bottomNavNotifier.new,
 );

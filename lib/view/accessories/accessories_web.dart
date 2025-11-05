@@ -81,7 +81,10 @@ class _AccessoriesWebState extends ConsumerState<AccessoriesWeb> {
         ),
         itemBuilder: (context, index) {
           final accessories = productList[index];
-          return CustomProductCard(productList: accessories);
+          return CustomProductCard(
+            productType: Products.accessary,
+            accessoryList: accessories,
+          );
         },
       ),
     );

@@ -12,26 +12,14 @@ class OnboardingScreen extends StatefulWidget {
 }
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
-
   final pageController = PageController();
 
   int currentPage = 0;
 
-  List<Map<String,dynamic>> images = [
-    {
-      'title': 'Welcome to Phone Care',
-      'path' : 'assets/images/logo.png',
-    }
-    ,
-    {
-      'title': 'Welcome to Phone Care',
-      'path' : 'assets/images/logo.png',
-    }
-    ,
-    {
-      'title': 'Welcome to Phone Care',
-      'path' : 'assets/images/logo.png',
-    }
+  List<Map<String, dynamic>> images = [
+    {'title': 'Welcome to Phone Care', 'path': 'assets/images/logo.png'},
+    {'title': 'Welcome to Phone Care', 'path': 'assets/images/logo.png'},
+    {'title': 'Welcome to Phone Care', 'path': 'assets/images/logo.png'},
   ];
 
   @override
@@ -40,12 +28,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     final height = size.height;
     final width = size.width;
 
-
-    double? imageWidth ;
+    double? imageWidth;
     double? imageHeight;
     double? fontSize;
-
-
 
     if (width < 600) {
       // 📱 Mobile
@@ -64,41 +49,39 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       fontSize = 30;
     }
 
-
     return Scaffold(
       backgroundColor: Colors.white,
       body: Column(
         children: [
           Expanded(
             child: PageView.builder(
-                controller: pageController,
-                itemCount: images.length,
-                onPageChanged: (value) {
-                  setState(() {
-                    currentPage = value;
-                  });
-                },
-                itemBuilder: (context, index) {
-                  return Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image.asset(
-                        images[index]['path'],
-                        width: imageWidth,
-                        height: imageHeight,
+              controller: pageController,
+              itemCount: images.length,
+              onPageChanged: (value) {
+                setState(() {
+                  currentPage = value;
+                });
+              },
+              itemBuilder: (context, index) {
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset(
+                      images[index]['path'],
+                      width: imageWidth,
+                      height: imageHeight,
+                    ),
+                    const SizedBox(height: 20),
+                    Text(
+                      images[index]['title'],
+                      style: TextStyle(
+                        fontSize: fontSize,
+                        fontWeight: FontWeight.bold,
                       ),
-                      const SizedBox(height: 20,),
-                      Text(
-                        images[index]['title'],
-                        style: TextStyle(
-                            fontSize: fontSize,
-                            fontWeight: FontWeight.bold
-                        ),
-                      ),
-                    ],
-                  );
-
-                }
+                    ),
+                  ],
+                );
+              },
             ),
           ),
           Padding(
@@ -116,8 +99,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     spacing: 5,
                   ),
                 ),
-                const SizedBox(height: 20,),
-                if(currentPage == images.length - 1)
+                const SizedBox(height: 20),
+                if (currentPage == images.length - 1)
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
@@ -126,9 +109,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       },
                       child: Text(
                         'Get Started',
-                        style: TextStyle(
-                            color: Colors.white
-                        ),
+                        style: TextStyle(color: Colors.white),
                       ),
                     ),
                   )
@@ -140,7 +121,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         onPressed: () {
                           context.goNamed('login');
                         },
-                        child: Text('Skip', style: TextStyle(color: Colors.black),),
+                        child: Text(
+                          'Skip',
+                          style: TextStyle(color: Colors.black),
+                        ),
                       ),
                       Container(
                         decoration: BoxDecoration(
@@ -149,21 +133,24 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         ),
                         child: TextButton(
                           onPressed: () {
-                            pageController.nextPage(duration: Duration(milliseconds: 500), curve: Curves.easeIn);
+                            pageController.nextPage(
+                              duration: Duration(milliseconds: 500),
+                              curve: Curves.easeIn,
+                            );
                           },
-                          child: Icon(Icons.arrow_forward_ios, color: Colors.white,),
+                          child: Icon(
+                            Icons.arrow_forward_ios,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
-
-                    ]
-                  )
-
+                    ],
+                  ),
               ],
             ),
-          )
+          ),
         ],
       ),
-
     );
   }
 }

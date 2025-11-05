@@ -20,7 +20,8 @@ class SearchScreen extends ConsumerWidget {
               decoration: InputDecoration(
                 hintText: "Search",
                 suffixIcon: IconButton(
-                  icon: const Icon(Icons.search), onPressed: () {  },
+                  icon: const Icon(Icons.search),
+                  onPressed: () {},
                 ),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
@@ -29,16 +30,23 @@ class SearchScreen extends ConsumerWidget {
             ),
             const SizedBox(height: 10),
             Center(
-              child: SvgPicture.asset("assets/images/notfound.svg", width: 400, height: 400,),
+              child: SvgPicture.asset(
+                "assets/images/notfound.svg",
+                width: 400,
+                height: 400,
+              ),
             ),
-            Text("No results found", style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-              color: Colors.grey[600],
-            ))
+            Text(
+              "No results found",
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: Colors.grey[600],
+              ),
+            ),
           ],
         ),
-      )
+      ),
     );
   }
 }

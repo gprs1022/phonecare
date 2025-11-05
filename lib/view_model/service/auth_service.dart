@@ -5,49 +5,42 @@ import 'api_client.dart';
 import 'api_config.dart';
 
 class AuthService {
-
   Future<EmailModel> loginUser(String email) async {
     final response = await ApiClient.dio.post(
       ApiConfig.login,
-      data: {
-        'email': email,
-      },
-
+      data: {'email': email},
     );
-    if(response.statusCode == 200 || response.statusCode == 201){
+    if (response.statusCode == 200 || response.statusCode == 201) {
       return EmailModel.fromJson(response.data);
-    }else{
+    } else {
       throw Exception('Failed to login');
     }
   }
 
   Future<VerifyOtpModel> verifyOtp(String email, String otp) async {
-    final response = await ApiClient.dio.post(ApiConfig.verifyOtp,
-    data: {
-      'email': email,
-      'otp': otp,
-    });
+    final response = await ApiClient.dio.post(
+      ApiConfig.verifyOtp,
+      data: {'email': email, 'otp': otp},
+    );
 
-    try{
-      if(response.statusCode == 200 || response.statusCode == 201){
-        final model=  VerifyOtpModel.fromJson(response.data);
+    try {
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        final model = VerifyOtpModel.fromJson(response.data);
 
         await saveTokens(model);
         print(model.accessToken);
         print(model.refreshToken);
         return model;
-
-      }else{
+      } else {
         final serverMessage = response.data['message'];
         throw Exception(serverMessage);
       }
-
-    }catch(e){
+    } catch (e) {
       print(e);
       rethrow;
     }
-
   }
+
   //save token to hive
   Future<void> saveTokens(VerifyOtpModel model) async {
     final box = Hive.box('authBox');
@@ -58,18 +51,17 @@ class AuthService {
     await box.put('userId', model.user?.id);
   }
 
-  String? getAccessToken(){
+  String? getAccessToken() {
     final box = Hive.box('authBox');
     return box.get('accessToken');
   }
 
-
-  String? getRefreshToken(){
+  String? getRefreshToken() {
     final box = Hive.box('authBox');
     return box.get('refreshToken');
   }
 
-  bool isLoggedIn(){
+  bool isLoggedIn() {
     final box = Hive.box('authBox');
     return box.get('accessToken') != null;
   }
@@ -80,4 +72,3 @@ class AuthService {
     print('User logged out and tokens cleared');
   }
 }
-

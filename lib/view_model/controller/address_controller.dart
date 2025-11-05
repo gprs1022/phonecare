@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -13,17 +12,6 @@ class AddressNotifier extends Notifier<AddressNotifier> {
   final phoneController = TextEditingController();
   final addressController = TextEditingController();
   final cityController = TextEditingController();
-
-
-
-
-
-
-
-
-
-
-
 }
 
 final AddressProvider = NotifierProvider<AddressNotifier, AddressNotifier>(

@@ -5,12 +5,11 @@ import 'package:phonecare/routes/app_routes.dart';
 import 'package:phonecare/view_model/controller/darktheme_controller.dart';
 import 'constant/theme.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Hive.initFlutter();
   await Hive.openBox('authBox');
-
 
   runApp(const ProviderScope(child: MyApp()));
 }

@@ -12,7 +12,6 @@ class LoginWeb extends ConsumerStatefulWidget {
 }
 
 class _LoginWebState extends ConsumerState<LoginWeb> {
-
   @override
   void initState() {
     super.initState();
@@ -23,7 +22,6 @@ class _LoginWebState extends ConsumerState<LoginWeb> {
 
   @override
   Widget build(BuildContext context) {
-
     ref.listen(loginTypeProvider, (previous, next) {
       if (next == AuthState.otpSent) {
         context.goNamed('verifyOtp');
@@ -32,7 +30,10 @@ class _LoginWebState extends ConsumerState<LoginWeb> {
       } else if (next == AuthState.error) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text(ref.read(loginTypeProvider.notifier).errorMessage ?? 'An error occurred'),
+            content: Text(
+              ref.read(loginTypeProvider.notifier).errorMessage ??
+                  'An error occurred',
+            ),
           ),
         );
       }
@@ -76,186 +77,206 @@ class _LoginWebState extends ConsumerState<LoginWeb> {
     return Scaffold(
       body: width >= 600
           ? Row(
-        children: [
-          Expanded(
-            child: SizedBox(
-              height: height,
-              child: Image.asset(
-                'assets/images/desktop.png',
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Form(
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(height: sizedBoxHeight,),
-                    ClipOval(
-                      child: Image.asset(
-                        'assets/images/logo.png',
-                        fit: BoxFit.cover,
-                        width: imageWidth,
-                        height: imageHeight,
-                      ),
+              children: [
+                Expanded(
+                  child: SizedBox(
+                    height: height,
+                    child: Image.asset(
+                      'assets/images/desktop.png',
+                      fit: BoxFit.cover,
                     ),
-                    SizedBox(height: sizedBoxHeight,),
-                    Text('Welcome to Phone Care', style: TextStyle(fontSize: fontSize, fontWeight: FontWeight.bold),),
-                    SizedBox(height: sizedBoxHeight,),
-                    TextFormField(
-                      controller: ref.watch(loginTypeProvider.notifier).emailController,
-                      style: TextStyle(
-                        fontSize: fontSize,
-                        fontWeight: FontWeight.w500,
-                      ),
-                      keyboardType: TextInputType.text,
-                      decoration: InputDecoration(
-                        hintText: 'Email',
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        suffixIcon: const Icon(Icons.email),
-                      ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter your email';
-                        }
-                        final emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
-                        if (!emailRegex.hasMatch(value)) {
-                          return 'Please enter a valid email address';
-                        }
-                        return null;
-                      },
-                    ),
-                    SizedBox(height: sizedBoxHeight,),
-                    SizedBox(
-                      width: double.infinity,
-                      height: buttonHeight,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          ref.read(loginTypeProvider.notifier).login();
-                        },
-                        child: Text(
-                          'Login',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: fontSize,
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: sizedBoxHeight,),
-                    TextButton(
-                      onPressed: () {
-                        context.goNamed('terms-conditions');
-                      },
-                      child: Text(
-                        'Terms & Conditions',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: fontSize,
-                        ),
-                      ),
-                    )
-                  ],
+                  ),
                 ),
-              ),
-            ),
-          ),
-        ],
-      )
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Form(
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SizedBox(height: sizedBoxHeight),
+                          ClipOval(
+                            child: Image.asset(
+                              'assets/images/logo.png',
+                              fit: BoxFit.cover,
+                              width: imageWidth,
+                              height: imageHeight,
+                            ),
+                          ),
+                          SizedBox(height: sizedBoxHeight),
+                          Text(
+                            'Welcome to Phone Care',
+                            style: TextStyle(
+                              fontSize: fontSize,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          SizedBox(height: sizedBoxHeight),
+                          TextFormField(
+                            controller: ref
+                                .watch(loginTypeProvider.notifier)
+                                .emailController,
+                            style: TextStyle(
+                              fontSize: fontSize,
+                              fontWeight: FontWeight.w500,
+                            ),
+                            keyboardType: TextInputType.text,
+                            decoration: InputDecoration(
+                              hintText: 'Email',
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              suffixIcon: const Icon(Icons.email),
+                            ),
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Please enter your email';
+                              }
+                              final emailRegex = RegExp(
+                                r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
+                              );
+                              if (!emailRegex.hasMatch(value)) {
+                                return 'Please enter a valid email address';
+                              }
+                              return null;
+                            },
+                          ),
+                          SizedBox(height: sizedBoxHeight),
+                          SizedBox(
+                            width: double.infinity,
+                            height: buttonHeight,
+                            child: ElevatedButton(
+                              onPressed: () {
+                                ref.read(loginTypeProvider.notifier).login();
+                              },
+                              child: Text(
+                                'Login',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: fontSize,
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: sizedBoxHeight),
+                          TextButton(
+                            onPressed: () {
+                              context.goNamed('terms-conditions');
+                            },
+                            child: Text(
+                              'Terms & Conditions',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                                fontSize: fontSize,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            )
           : Column(
-        children: [
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Form(
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(height: sizedBoxHeight,),
-                    ClipOval(
-                      child: Image.asset(
-                        'assets/images/logo.png',
-                        fit: BoxFit.cover,
-                        width: imageWidth,
-                        height: imageHeight,
-                      ),
-                    ),
-                    SizedBox(height: sizedBoxHeight,),
-                    Text('Welcome to Phone Care', style: TextStyle(fontSize: fontSize, fontWeight: FontWeight.bold),),
-                    SizedBox(height: sizedBoxHeight,),
-                    TextFormField(
-                      controller: ref.watch(loginTypeProvider.notifier).emailController,
-                      style: TextStyle(
-                        fontSize: fontSize,
-                        fontWeight: FontWeight.w500,
-                      ),
-                      keyboardType: TextInputType.text,
-                      decoration: InputDecoration(
-                        hintText: 'Email',
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        suffixIcon: const Icon(Icons.email),
-                      ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter your email';
-                        }
-                        final emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
-                        if (!emailRegex.hasMatch(value)) {
-                          return 'Please enter a valid email address';
-                        }
-                        return null;
-                      },
-                    ),
-                    SizedBox(height: sizedBoxHeight,),
-                    SizedBox(
-                      width: double.infinity,
-                      height: buttonHeight,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          ref.read(loginTypeProvider.notifier).login();
-                        },
-                        child: Text(
-                          'Login',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: fontSize,
+              children: [
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Form(
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SizedBox(height: sizedBoxHeight),
+                          ClipOval(
+                            child: Image.asset(
+                              'assets/images/logo.png',
+                              fit: BoxFit.cover,
+                              width: imageWidth,
+                              height: imageHeight,
+                            ),
                           ),
-                        ),
+                          SizedBox(height: sizedBoxHeight),
+                          Text(
+                            'Welcome to Phone Care',
+                            style: TextStyle(
+                              fontSize: fontSize,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          SizedBox(height: sizedBoxHeight),
+                          TextFormField(
+                            controller: ref
+                                .watch(loginTypeProvider.notifier)
+                                .emailController,
+                            style: TextStyle(
+                              fontSize: fontSize,
+                              fontWeight: FontWeight.w500,
+                            ),
+                            keyboardType: TextInputType.text,
+                            decoration: InputDecoration(
+                              hintText: 'Email',
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              suffixIcon: const Icon(Icons.email),
+                            ),
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Please enter your email';
+                              }
+                              final emailRegex = RegExp(
+                                r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
+                              );
+                              if (!emailRegex.hasMatch(value)) {
+                                return 'Please enter a valid email address';
+                              }
+                              return null;
+                            },
+                          ),
+                          SizedBox(height: sizedBoxHeight),
+                          SizedBox(
+                            width: double.infinity,
+                            height: buttonHeight,
+                            child: ElevatedButton(
+                              onPressed: () {
+                                ref.read(loginTypeProvider.notifier).login();
+                              },
+                              child: Text(
+                                'Login',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: fontSize,
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: sizedBoxHeight),
+                          TextButton(
+                            onPressed: () {
+                              context.goNamed('terms-conditions');
+                            },
+                            child: Text(
+                              'Terms & Conditions',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                                fontSize: fontSize,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                    SizedBox(height: sizedBoxHeight,),
-                    TextButton(
-                      onPressed: () {
-                        context.goNamed('terms-conditions');
-                      },
-                      child: Text(
-                        'Terms & Conditions',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: fontSize,
-                        ),
-                      ),
-                    )
-                  ],
+                  ),
                 ),
-              ),
+              ],
             ),
-          ),
-        ],
-      ),
     );
   }
 }

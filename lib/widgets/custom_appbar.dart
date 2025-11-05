@@ -26,7 +26,8 @@ class CustomAppbar extends ConsumerWidget implements PreferredSizeWidget {
     double actionMarginHorizontal;
     double notificationDotSize;
 
-    if (width < 600) { // Mobile
+    if (width < 600) {
+      // Mobile
       logoSize = 40;
       titleFontSize = 20;
       actionIconSize = 20;
@@ -34,7 +35,8 @@ class CustomAppbar extends ConsumerWidget implements PreferredSizeWidget {
       actionPadding = 4;
       actionMarginHorizontal = 8;
       notificationDotSize = 8;
-    } else if (width < 1024) { // Tablet
+    } else if (width < 1024) {
+      // Tablet
       logoSize = 45;
       titleFontSize = 22;
       actionIconSize = 22;
@@ -42,7 +44,8 @@ class CustomAppbar extends ConsumerWidget implements PreferredSizeWidget {
       actionPadding = 4;
       actionMarginHorizontal = 9;
       notificationDotSize = 9;
-    } else { // Web/Desktop
+    } else {
+      // Web/Desktop
       logoSize = 50;
       titleFontSize = 24;
       actionIconSize = 24;
@@ -53,7 +56,9 @@ class CustomAppbar extends ConsumerWidget implements PreferredSizeWidget {
     }
 
     return AppBar(
-      backgroundColor: isDarkMode ? Colors.black : Colors.white, // Theme-aware background
+      backgroundColor: isDarkMode
+          ? Colors.black
+          : Colors.white, // Theme-aware background
       automaticallyImplyLeading: false,
       title: Row(
         children: [
@@ -66,12 +71,28 @@ class CustomAppbar extends ConsumerWidget implements PreferredSizeWidget {
                 width: logoSize,
               ),
               SizedBox(width: 10),
-              RichText(text: TextSpan(
-                children: [
-                  TextSpan(text: 'Phone', style: TextStyle(fontSize: titleFontSize, fontWeight: FontWeight.bold, color: Theme.of(context).textTheme.titleLarge?.color)), // Theme-aware text color
-                  TextSpan(text: 'Care', style: TextStyle(fontSize: titleFontSize, fontWeight: FontWeight.bold, color: AppColor.primaryColor)), // Use AppColor.primaryColor as it's a constant
-                ]
-              ))
+              RichText(
+                text: TextSpan(
+                  children: [
+                    TextSpan(
+                      text: 'Phone',
+                      style: TextStyle(
+                        fontSize: titleFontSize,
+                        fontWeight: FontWeight.bold,
+                        color: Theme.of(context).textTheme.titleLarge?.color,
+                      ),
+                    ), // Theme-aware text color
+                    TextSpan(
+                      text: 'Care',
+                      style: TextStyle(
+                        fontSize: titleFontSize,
+                        fontWeight: FontWeight.bold,
+                        color: AppColor.primaryColor,
+                      ),
+                    ), // Use AppColor.primaryColor as it's a constant
+                  ],
+                ),
+              ),
             ],
           ),
           Spacer(),
@@ -127,7 +148,9 @@ class CustomAppbar extends ConsumerWidget implements PreferredSizeWidget {
         ),
         child: Stack(
           children: [
-            Center(child: Icon(icon, color: Colors.white, size: iconSize)),
+            Center(
+              child: Icon(icon, color: Colors.white, size: iconSize),
+            ),
             Positioned(
               right: 0,
               top: 0,
@@ -139,7 +162,7 @@ class CustomAppbar extends ConsumerWidget implements PreferredSizeWidget {
                   borderRadius: BorderRadius.circular(notificationSize / 2),
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),

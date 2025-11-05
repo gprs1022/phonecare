@@ -14,7 +14,9 @@ class HomeScreen extends StatelessWidget {
     } else if (PlatformHelper.isMobile) {
       return const HomeMobile();
     } else {
-      return const Scaffold(body: Center(child: Text('Unsupported Platform for Device')));
+      return const Scaffold(
+        body: Center(child: Text('Unsupported Platform for Device')),
+      );
     }
   }
 }

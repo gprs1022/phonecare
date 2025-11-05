@@ -5,21 +5,21 @@ import '../../constant/color.dart';
 import '../../view_model/controller/darktheme_controller.dart';
 
 class CartMobile extends ConsumerWidget {
-  CartMobile({super.key, });
+  CartMobile({super.key});
 
   final List<Map<String, dynamic>> CartItem = [
     {
       "name": "Apple Iphone 14 Pro",
-      "image": "https://s3ng.cashify.in/cashify/product/img/xhdpi/csh-yktr66ov-8tbh.png",
-      "price": "45000"
-
+      "image":
+          "https://s3ng.cashify.in/cashify/product/img/xhdpi/csh-yktr66ov-8tbh.png",
+      "price": "45000",
     },
     {
       "name": "Samsung Galaxy S23 Ultra",
-      "image": "https://s3ng.cashify.in/cashify/product/img/xhdpi/csh-yktr66ov-8tbh.png",
-      "price": "55000"
+      "image":
+          "https://s3ng.cashify.in/cashify/product/img/xhdpi/csh-yktr66ov-8tbh.png",
+      "price": "55000",
     },
-
   ];
 
   @override
@@ -39,18 +39,20 @@ class CartMobile extends ConsumerWidget {
     double summaryVerticalSpacing; // New responsive spacing
     double checkoutButtonVerticalPadding;
 
-    if (width < 360) { // Smallest mobile screens (e.g., iPhone SE first gen)
+    if (width < 360) {
+      // Smallest mobile screens (e.g., iPhone SE first gen)
       cartItemHeight = 70; // Remains 70
       imageSize = 50; // Remains 50
       titleFontSize = 9; // Remains 9
-      priceFontSize = 7;  // Remains 7
+      priceFontSize = 7; // Remains 7
       buttonFontSize = 9; // Remains 9
       iconButtonSize = 12; // Remains 12
       horizontalPadding = 4.0;
       itemInnerPadding = 1.0; // Further reduced inner padding
       summaryVerticalSpacing = 5.0;
       checkoutButtonVerticalPadding = 5.0;
-    } else if (width < 600) { // Standard mobile screens
+    } else if (width < 600) {
+      // Standard mobile screens
       cartItemHeight = 100;
       imageSize = 80;
       titleFontSize = 14;
@@ -61,7 +63,8 @@ class CartMobile extends ConsumerWidget {
       itemInnerPadding = 6.0;
       summaryVerticalSpacing = 10.0;
       checkoutButtonVerticalPadding = 10.0;
-    } else { // Larger mobile / small tablet in portrait
+    } else {
+      // Larger mobile / small tablet in portrait
       cartItemHeight = 120;
       imageSize = 100;
       titleFontSize = 16;
@@ -75,14 +78,20 @@ class CartMobile extends ConsumerWidget {
     }
 
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.background, // Theme-aware background
+      backgroundColor: Theme.of(
+        context,
+      ).colorScheme.background, // Theme-aware background
       appBar: AppBar(
-        backgroundColor: Theme.of(context).appBarTheme.backgroundColor, // Theme-aware background
+        backgroundColor: Theme.of(
+          context,
+        ).appBarTheme.backgroundColor, // Theme-aware background
         automaticallyImplyLeading: true,
         title: Text(
           'Cart',
           style: TextStyle(
-            color: Theme.of(context).textTheme.titleLarge?.color, // Theme-aware text color
+            color: Theme.of(
+              context,
+            ).textTheme.titleLarge?.color, // Theme-aware text color
             fontSize: titleFontSize,
             fontWeight: FontWeight.bold,
           ),
@@ -97,21 +106,29 @@ class CartMobile extends ConsumerWidget {
                 itemCount: CartItem.length,
                 itemBuilder: (context, index) {
                   return Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 5.0), // Reduced vertical padding
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 5.0,
+                    ), // Reduced vertical padding
                     child: Container(
                       width: double.infinity,
                       height: cartItemHeight,
                       decoration: BoxDecoration(
-                        color: Theme.of(context).cardColor, // Theme-aware background color
+                        color: Theme.of(
+                          context,
+                        ).cardColor, // Theme-aware background color
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Card(
-                        color: Theme.of(context).cardColor, // Theme-aware background color
+                        color: Theme.of(
+                          context,
+                        ).cardColor, // Theme-aware background color
                         clipBehavior: Clip.antiAlias,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                           side: BorderSide(
-                            color: Theme.of(context).dividerColor, // Theme-aware divider color
+                            color: Theme.of(
+                              context,
+                            ).dividerColor, // Theme-aware divider color
                           ),
                         ),
                         child: Row(
@@ -122,12 +139,16 @@ class CartMobile extends ConsumerWidget {
                                 CartItem[index]["image"], // Use actual image from list
                                 width: imageSize,
                                 height: imageSize,
-                                fit: BoxFit.contain, // Ensure full image is visible
+                                fit: BoxFit
+                                    .contain, // Ensure full image is visible
                               ),
                             ),
-                            Expanded( // Allow text column to take available space
+                            Expanded(
+                              // Allow text column to take available space
                               child: Padding(
-                                padding: EdgeInsets.all(itemInnerPadding), // Use responsive inner padding
+                                padding: EdgeInsets.all(
+                                  itemInnerPadding,
+                                ), // Use responsive inner padding
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisAlignment: MainAxisAlignment.center,
@@ -139,7 +160,10 @@ class CartMobile extends ConsumerWidget {
                                       style: TextStyle(
                                         fontSize: titleFontSize,
                                         fontWeight: FontWeight.bold,
-                                        color: Theme.of(context).textTheme.bodyLarge?.color, // Theme-aware text color
+                                        color: Theme.of(context)
+                                            .textTheme
+                                            .bodyLarge
+                                            ?.color, // Theme-aware text color
                                       ),
                                     ),
                                     Text(
@@ -147,39 +171,72 @@ class CartMobile extends ConsumerWidget {
                                       style: TextStyle(
                                         fontSize: priceFontSize,
                                         fontWeight: FontWeight.bold,
-                                        color: Theme.of(context).textTheme.bodyMedium?.color, // Theme-aware text color
+                                        color: Theme.of(context)
+                                            .textTheme
+                                            .bodyMedium
+                                            ?.color, // Theme-aware text color
                                       ),
                                     ),
                                     Spacer(), // Pushes quantity row to bottom
                                     Row(
-                                      mainAxisAlignment: MainAxisAlignment.end, // Align quantity controls to the end
+                                      mainAxisAlignment: MainAxisAlignment
+                                          .end, // Align quantity controls to the end
                                       children: [
                                         SizedBox(
-                                          width: iconButtonSize * 1.5, // Give it a bit more width than height
-                                          height: iconButtonSize * 1.2, // Explicitly control height
+                                          width:
+                                              iconButtonSize *
+                                              1.5, // Give it a bit more width than height
+                                          height:
+                                              iconButtonSize *
+                                              1.2, // Explicitly control height
                                           child: IconButton(
-                                            padding: EdgeInsets.zero, // Remove internal padding
-                                            alignment: Alignment.center, // Center the icon
+                                            padding: EdgeInsets
+                                                .zero, // Remove internal padding
+                                            alignment: Alignment
+                                                .center, // Center the icon
                                             onPressed: () {},
-                                            icon: Icon(Icons.remove, size: iconButtonSize, color: Theme.of(context).iconTheme.color,),
+                                            icon: Icon(
+                                              Icons.remove,
+                                              size: iconButtonSize,
+                                              color: Theme.of(
+                                                context,
+                                              ).iconTheme.color,
+                                            ),
                                           ),
                                         ),
                                         Text(
                                           "1",
-                                          style: TextStyle(fontSize: priceFontSize, color: Theme.of(context).textTheme.bodyMedium?.color),
+                                          style: TextStyle(
+                                            fontSize: priceFontSize,
+                                            color: Theme.of(
+                                              context,
+                                            ).textTheme.bodyMedium?.color,
+                                          ),
                                         ),
                                         SizedBox(
-                                          width: iconButtonSize * 1.5, // Give it a bit more width than height
-                                          height: iconButtonSize * 1.2, // Explicitly control height
+                                          width:
+                                              iconButtonSize *
+                                              1.5, // Give it a bit more width than height
+                                          height:
+                                              iconButtonSize *
+                                              1.2, // Explicitly control height
                                           child: IconButton(
-                                            padding: EdgeInsets.zero, // Remove internal padding
-                                            alignment: Alignment.center, // Center the icon
+                                            padding: EdgeInsets
+                                                .zero, // Remove internal padding
+                                            alignment: Alignment
+                                                .center, // Center the icon
                                             onPressed: () {},
-                                            icon: Icon(Icons.add, size: iconButtonSize, color: Theme.of(context).iconTheme.color,),
+                                            icon: Icon(
+                                              Icons.add,
+                                              size: iconButtonSize,
+                                              color: Theme.of(
+                                                context,
+                                              ).iconTheme.color,
+                                            ),
                                           ),
                                         ),
                                       ],
-                                    )
+                                    ),
                                   ],
                                 ),
                               ),
@@ -194,14 +251,14 @@ class CartMobile extends ConsumerWidget {
             ),
             SizedBox(height: summaryVerticalSpacing), // Use responsive spacing
             OrderSummary(
-                titleFontSize: titleFontSize,
-                priceFontSize: priceFontSize,
-                buttonFontSize: buttonFontSize,
-                horizontalPadding: horizontalPadding,
-                summaryVerticalSpacing: summaryVerticalSpacing,
-                checkoutButtonVerticalPadding: checkoutButtonVerticalPadding,
-                cartItems: CartItem
-            )
+              titleFontSize: titleFontSize,
+              priceFontSize: priceFontSize,
+              buttonFontSize: buttonFontSize,
+              horizontalPadding: horizontalPadding,
+              summaryVerticalSpacing: summaryVerticalSpacing,
+              checkoutButtonVerticalPadding: checkoutButtonVerticalPadding,
+              cartItems: CartItem,
+            ),
           ],
         ),
       ),
@@ -210,7 +267,6 @@ class CartMobile extends ConsumerWidget {
 }
 
 class OrderSummary extends ConsumerWidget {
-
   final double titleFontSize;
   final double priceFontSize;
   final double buttonFontSize;
@@ -231,14 +287,17 @@ class OrderSummary extends ConsumerWidget {
   }) : super(key: key);
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    int total = cartItems.fold(0, (sum, item) => sum + int.parse(item["price"] as String));
+    int total = cartItems.fold(
+      0,
+      (sum, item) => sum + int.parse(item["price"] as String),
+    );
 
     return Container(
       padding: EdgeInsets.all(horizontalPadding),
       decoration: BoxDecoration(
-          color: Theme.of(context).cardColor,
-          borderRadius: BorderRadius.circular(10),
-          border: Border.all(color: Theme.of(context).dividerColor,)
+        color: Theme.of(context).cardColor,
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(color: Theme.of(context).dividerColor),
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -257,11 +316,18 @@ class OrderSummary extends ConsumerWidget {
             children: [
               Text(
                 "Subtotal",
-                style: TextStyle(fontSize: priceFontSize, color: Theme.of(context).textTheme.bodyMedium?.color),
+                style: TextStyle(
+                  fontSize: priceFontSize,
+                  color: Theme.of(context).textTheme.bodyMedium?.color,
+                ),
               ),
               Text(
                 "\$total", // Use calculated total for subtotal for now
-                style: TextStyle(fontSize: priceFontSize, fontWeight: FontWeight.bold, color: Theme.of(context).textTheme.bodyLarge?.color),
+                style: TextStyle(
+                  fontSize: priceFontSize,
+                  fontWeight: FontWeight.bold,
+                  color: Theme.of(context).textTheme.bodyLarge?.color,
+                ),
               ),
             ],
           ),
@@ -271,11 +337,18 @@ class OrderSummary extends ConsumerWidget {
             children: [
               Text(
                 "Shipping",
-                style: TextStyle(fontSize: priceFontSize, color: Theme.of(context).textTheme.bodyMedium?.color),
+                style: TextStyle(
+                  fontSize: priceFontSize,
+                  color: Theme.of(context).textTheme.bodyMedium?.color,
+                ),
               ),
               Text(
                 "Free",
-                style: TextStyle(fontSize: priceFontSize, fontWeight: FontWeight.bold, color: Theme.of(context).textTheme.bodyLarge?.color),
+                style: TextStyle(
+                  fontSize: priceFontSize,
+                  fontWeight: FontWeight.bold,
+                  color: Theme.of(context).textTheme.bodyLarge?.color,
+                ),
               ),
             ],
           ),
@@ -285,11 +358,19 @@ class OrderSummary extends ConsumerWidget {
             children: [
               Text(
                 "Total",
-                style: TextStyle(fontSize: titleFontSize, fontWeight: FontWeight.bold, color: Theme.of(context).textTheme.bodyLarge?.color),
+                style: TextStyle(
+                  fontSize: titleFontSize,
+                  fontWeight: FontWeight.bold,
+                  color: Theme.of(context).textTheme.bodyLarge?.color,
+                ),
               ),
               Text(
                 "\$total", // Use calculated total
-                style: TextStyle(fontSize: titleFontSize, fontWeight: FontWeight.bold, color: Theme.of(context).textTheme.bodyLarge?.color),
+                style: TextStyle(
+                  fontSize: titleFontSize,
+                  fontWeight: FontWeight.bold,
+                  color: Theme.of(context).textTheme.bodyLarge?.color,
+                ),
               ),
             ],
           ),
@@ -303,7 +384,9 @@ class OrderSummary extends ConsumerWidget {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
-                padding: EdgeInsets.symmetric(vertical: checkoutButtonVerticalPadding),
+                padding: EdgeInsets.symmetric(
+                  vertical: checkoutButtonVerticalPadding,
+                ),
               ),
               child: Text(
                 "Proceed to Checkout",

@@ -4,7 +4,6 @@ import 'package:phonecare/view_model/service/api_services.dart';
 
 import '../../models/homepage_model.dart';
 
-
 class HomeNotifier extends Notifier<ApiStatus> {
   final ApiService apiService = ApiService();
   List<SliderModel> sliders = [];
@@ -32,7 +31,7 @@ class HomeNotifier extends Notifier<ApiStatus> {
 
   Future<List<BrandModel>> getBrands() async {
     print("Fetching brands... xxx");
-    try{
+    try {
       state = ApiStatus.loading;
       brands = await apiService.getBrands();
       state = ApiStatus.success;
@@ -45,15 +44,15 @@ class HomeNotifier extends Notifier<ApiStatus> {
     }
   }
 
-  Future<List<PhoneModel>> getPhoneByBrandId(String brandId) async{
+  Future<List<PhoneModel>> getPhoneByBrandId(String brandId) async {
     print("Fetching phones by brandId: $brandId");
-    try{
+    try {
       state = ApiStatus.loading;
       phones = await apiService.getPhonesByBrandId(brandId);
       state = ApiStatus.success;
       print("Phones fetched successfully, total: ${phones.length}");
       return phones;
-    } catch(e) {
+    } catch (e) {
       state = ApiStatus.error;
       print("Error fetching phones by brandId: $e");
       return [];
@@ -61,4 +60,6 @@ class HomeNotifier extends Notifier<ApiStatus> {
   }
 }
 
-final homeNotifierProvider = NotifierProvider<HomeNotifier, ApiStatus>(HomeNotifier.new);
+final homeNotifierProvider = NotifierProvider<HomeNotifier, ApiStatus>(
+  HomeNotifier.new,
+);

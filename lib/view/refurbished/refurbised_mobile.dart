@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:phonecare/constant/enums.dart';
 import 'package:phonecare/view_model/controller/refurbished_provider.dart';
-
-import '../../widgets/custom_productcard.dart';
+import 'package:phonecare/widgets/custom_productcard.dart';
 
 class RefurbisedMobile extends ConsumerStatefulWidget {
   const RefurbisedMobile({super.key});
@@ -54,7 +53,10 @@ class _RefurbisedMobileState extends ConsumerState<RefurbisedMobile> {
           ),
           itemBuilder: (context, index) {
             final refurbishedProduct = productList[index];
-            return CustomProductCard(productList: refurbishedProduct);
+            return CustomProductCard(
+              productType: Products.refurbrished,
+              refurbishedList: refurbishedProduct,
+            );
           },
         ),
       ),

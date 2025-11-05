@@ -2,7 +2,6 @@ import 'dart:io' show Platform;
 import 'package:flutter/foundation.dart' show kIsWeb;
 
 class PlatformHelper {
-
   /// Returns true if the app is running on the Web
   static bool get isWeb => kIsWeb;
 
@@ -16,5 +15,6 @@ class PlatformHelper {
   static bool get isMobile => !kIsWeb && (Platform.isAndroid || Platform.isIOS);
 
   /// Returns true if the app is running on Desktop (Mac, Windows, Linux)
-  static bool get isDesktop => !kIsWeb && (Platform.isMacOS || Platform.isWindows || Platform.isLinux);
+  static bool get isDesktop =>
+      !kIsWeb && (Platform.isMacOS || Platform.isWindows || Platform.isLinux);
 }

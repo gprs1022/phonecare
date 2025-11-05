@@ -21,15 +21,18 @@ class HomeMobile extends ConsumerWidget {
     double horizontalMargin = 10.0;
 
     // Responsive adjustments for mobile
-    if (width < 600) {           // Small mobile
+    if (width < 600) {
+      // Small mobile
       fontSize = 18;
       containerHeight = 50;
       horizontalMargin = 10;
-    } else if (width < 1024) {    // Large mobile / small tablet
+    } else if (width < 1024) {
+      // Large mobile / small tablet
       fontSize = 22;
       containerHeight = 70;
       horizontalMargin = 20;
-    } else {                      // Large tablet (still considered mobile context)
+    } else {
+      // Large tablet (still considered mobile context)
       fontSize = 26;
       containerHeight = 90;
       horizontalMargin = 40;
@@ -44,7 +47,9 @@ class HomeMobile extends ConsumerWidget {
           //Header Section
           Container(
             margin: EdgeInsets.symmetric(
-                horizontal: horizontalMargin, vertical: 10),
+              horizontal: horizontalMargin,
+              vertical: 10,
+            ),
             alignment: Alignment.center,
             width: double.infinity,
             height: containerHeight,
@@ -53,7 +58,9 @@ class HomeMobile extends ConsumerWidget {
               color: Theme.of(context).cardColor, // Using theme card color
               boxShadow: [
                 BoxShadow(
-                  color: Theme.of(context).shadowColor.withOpacity(0.1), // Using theme shadow color
+                  color: Theme.of(
+                    context,
+                  ).shadowColor.withOpacity(0.1), // Using theme shadow color
                   blurRadius: 6,
                   offset: const Offset(0, 3),
                 ),
@@ -66,7 +73,9 @@ class HomeMobile extends ConsumerWidget {
                 style: TextStyle(
                   fontSize: fontSize,
                   fontWeight: FontWeight.bold,
-                  color: Theme.of(context).textTheme.headlineSmall?.color, // Using theme text color
+                  color: Theme.of(
+                    context,
+                  ).textTheme.headlineSmall?.color, // Using theme text color
                 ),
               ),
             ),

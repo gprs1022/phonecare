@@ -2,78 +2,68 @@ import 'package:phonecare/view_model/service/api_config.dart';
 
 class AccessoriesModel {
   final String id;
-  final String categoryId;
-  final String productName;
-  final String productDescription;
-  final int price;
-  final int condition;
-  final int rating;
-  final int storage;
-  final String battery;
-  final String processor;
-  final int ram;
-  final int originalPrice;
-  final List<String> images;
   final Brand? brand;
+  final String productName;
+  final int originalPrice;
+  final int price;
+  final int tax;
+  final int rating;
+  final int reviewCount;
+  final String categoryId;
+  final List<String> images;
+  final String productDescription;
 
   AccessoriesModel({
     required this.id,
-    required this.categoryId,
-    required this.productName,
-    required this.productDescription,
-    required this.price,
-    required this.condition,
-    required this.storage,
-    required this.battery,
-    required this.processor,
-    required this.ram,
-    required this.originalPrice,
-    required this.rating,
-    required this.images,
     required this.brand,
+    required this.productName,
+    required this.originalPrice,
+    required this.price,
+    required this.tax,
+    required this.rating,
+    required this.reviewCount,
+    required this.categoryId,
+    required this.images,
+    required this.productDescription,
   });
 
   factory AccessoriesModel.fromJson(Map<String, dynamic> json) {
     return AccessoriesModel(
       id: json['_id'] ?? "",
-      categoryId: json['category'] ?? "",
-      productName: json['productName'] ?? "",
-      productDescription: json['productDescription'] ?? "",
-      price: json['price'] ?? 0,
-      condition: json['condition'] ?? 0,
-      rating: json['rating'] ?? 0,
-      storage: json['storage'] ?? 0,
-      ram: json['ram'] ?? 0,
-      battery: json['battery'] ?? "",
-      processor: json['processor'] ?? "",
+      brand: json['brand'] != null ? Brand.fromJson(json['brand']) : null,
+      productName: json['name'] ?? "",
       originalPrice: json['originalPrice'] ?? 0,
+      price: json['price'] ?? 0,
+      tax: json['tax'] ?? 0,
+      rating: json['rating'] ?? 0,
+      reviewCount: json['reviewCount'] ?? 0,
+      categoryId: json['category'] ?? "",
       images: List<String>.from(
         json['images'] != null
             ? List<String>.from(
-                json['images'].map((img) => '${ApiConfig.baseUrl}/$img'),
+                json['images'].map(
+                  (imagePath) => '${ApiConfig.baseUrl}/$imagePath',
+                ),
               )
             : [],
       ),
-      brand: json['brand'] != null ? Brand.fromJson(json['brand']) : null,
+      productDescription: json['description'] ?? "",
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
       '_id': id,
-      'category': categoryId,
-      'productName': productName,
-      'productDescription': productDescription,
-      'price': price,
-      'storage': storage,
-      'ram': ram,
-      'battery': battery,
-      'processor': processor,
-      'originalPrice': originalPrice,
-      'condition': condition,
-      'rating': rating,
-      'images': images,
       'brand': brand?.toJson(),
+      'productName': productName,
+      'originalPrice': originalPrice,
+      'price': price,
+      'tax': tax,
+      'rating': rating,
+      'reviewCount': reviewCount,
+      'category': categoryId,
+      'images': images,
+      'productDescription': productDescription,
     };
   }
 }

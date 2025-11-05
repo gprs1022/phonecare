@@ -20,10 +20,7 @@ class _CityDropdownState extends State<CityDropdown> {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(10),
-        border: Border.all(
-          color: Colors.black,
-          width: 1,
-        ),
+        border: Border.all(color: Colors.black, width: 1),
       ),
       child: DropdownButtonHideUnderline(
         child: DropdownButton<String>(
@@ -33,13 +30,19 @@ class _CityDropdownState extends State<CityDropdown> {
             'Select your City',
             style: TextStyle(color: Colors.black54),
           ),
-          icon: const Icon(Icons.arrow_drop_down, color: Colors.black), // right side arrow
+          icon: const Icon(
+            Icons.arrow_drop_down,
+            color: Colors.black,
+          ), // right side arrow
           items: cities.map((String city) {
             return DropdownMenuItem<String>(
               value: city,
               child: Row(
                 children: [
-                  const Icon(Icons.location_city, color: Colors.black), // Prefix icon
+                  const Icon(
+                    Icons.location_city,
+                    color: Colors.black,
+                  ), // Prefix icon
                   const SizedBox(width: 8),
                   Text(city),
                 ],

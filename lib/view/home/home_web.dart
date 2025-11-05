@@ -20,15 +20,18 @@ class HomeWeb extends ConsumerWidget {
     double horizontalMargin = 10.0;
 
     // Responsive adjustments for web/desktop
-    if (width < 600) {           // Narrow browser window
+    if (width < 600) {
+      // Narrow browser window
       fontSize = 18;
       containerHeight = 50;
       horizontalMargin = 10;
-    } else if (width < 1024) {    // Medium screen (tablet-sized web)
+    } else if (width < 1024) {
+      // Medium screen (tablet-sized web)
       fontSize = 22;
       containerHeight = 70;
       horizontalMargin = 20;
-    } else {                      // Wide screen / desktop
+    } else {
+      // Wide screen / desktop
       fontSize = 26;
       containerHeight = 90;
       horizontalMargin = 40;
@@ -42,7 +45,10 @@ class HomeWeb extends ConsumerWidget {
 
           //Header Section
           Container(
-            margin: EdgeInsets.symmetric(horizontal: horizontalMargin, vertical: 10),
+            margin: EdgeInsets.symmetric(
+              horizontal: horizontalMargin,
+              vertical: 10,
+            ),
             alignment: Alignment.center,
             width: double.infinity,
             height: containerHeight,
@@ -51,7 +57,9 @@ class HomeWeb extends ConsumerWidget {
               color: Theme.of(context).cardColor, // Using theme card color
               boxShadow: [
                 BoxShadow(
-                  color: Theme.of(context).shadowColor.withOpacity(0.1), // Using theme shadow color
+                  color: Theme.of(
+                    context,
+                  ).shadowColor.withOpacity(0.1), // Using theme shadow color
                   blurRadius: 6,
                   offset: const Offset(0, 3),
                 ),
@@ -64,14 +72,16 @@ class HomeWeb extends ConsumerWidget {
                 style: TextStyle(
                   fontSize: fontSize,
                   fontWeight: FontWeight.bold,
-                  color: Theme.of(context).textTheme.headlineSmall?.color, // Using theme text color
+                  color: Theme.of(
+                    context,
+                  ).textTheme.headlineSmall?.color, // Using theme text color
                 ),
               ),
             ),
           ),
 
           // Brand Section
-         BrandItems()
+          BrandItems(),
         ],
       ),
     );
